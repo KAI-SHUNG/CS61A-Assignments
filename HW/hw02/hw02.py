@@ -9,7 +9,7 @@ triple = lambda x: 3 * x
 increment = lambda x: x + 1
 
 
-HW_SOURCE_FILE=__file__
+HW_SOURCE_FILE = __file__
 
 
 def product(n, term):
@@ -32,11 +32,15 @@ def product(n, term):
     162
     """
     "*** YOUR CODE HERE ***"
+    ans = 1
+    for i in range(1, n + 1):
+        ans *= term(i)
+    return ans
 
 
 def accumulate(fuse, start, n, term):
-    """Return the result of fusing together the first n terms in a sequence 
-    and start.  The terms to be fused are term(1), term(2), ..., term(n). 
+    """Return the result of fusing together the first n terms in a sequence
+    and start.  The terms to be fused are term(1), term(2), ..., term(n).
     The function fuse is a two-argument commutative & associative function.
 
     >>> accumulate(add, 0, 5, identity)  # 0 + 1 + 2 + 3 + 4 + 5
@@ -100,4 +104,3 @@ def make_repeater(f, n):
     390625
     """
     "*** YOUR CODE HERE ***"
-
