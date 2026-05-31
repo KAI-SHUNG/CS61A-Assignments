@@ -1,4 +1,3 @@
-
 def composite_identity(f, g):
     """
     Return a function with one parameter x that returns True if f(g(x)) is
@@ -15,6 +14,11 @@ def composite_identity(f, g):
     """
     "*** YOUR CODE HERE ***"
 
+    def check(x):
+        return f(g(x)) == g(f(x))
+
+    return check
+
 
 def sum_digits(y):
     """Return the sum of the digits of non-negative integer y."""
@@ -22,6 +26,7 @@ def sum_digits(y):
     while y > 0:
         total, y = total + y % 10, y // 10
     return total
+
 
 def is_prime(n):
     """Return whether positive integer n is prime."""
@@ -33,6 +38,7 @@ def is_prime(n):
             return False
         k += 1
     return True
+
 
 def count_cond(condition):
     """Returns a function with one parameter N that counts all the numbers from
@@ -61,6 +67,15 @@ def count_cond(condition):
     """
     "*** YOUR CODE HERE ***"
 
+    def count(n):
+        cnt = 0
+        for i in range(1, n + 1):
+            if condition(n, i):
+                cnt += 1
+        return cnt
+
+    return count
+
 
 def multiple(a, b):
     """Return the smallest number n that is a multiple of both a and b.
@@ -71,7 +86,10 @@ def multiple(a, b):
     42
     """
     "*** YOUR CODE HERE ***"
-
+    ans = a
+    while ans % b != 0:
+        ans += a
+    return ans
 
 
 def cycle(f1, f2, f3):
@@ -102,3 +120,17 @@ def cycle(f1, f2, f3):
     """
     "*** YOUR CODE HERE ***"
 
+    def make_times(n):
+        def calcu(x):
+            for i in range(n):
+                if i % 3 == 0:
+                    x = f1(x)
+                elif i % 3 == 1:
+                    x = f2(x)
+                elif i % 3 == 2:
+                    x = f3(x)
+            return x
+
+        return calcu
+
+    return make_times
